@@ -1,11 +1,13 @@
 <mat-tab-group>
     <mat-tab label="Personal Information"> 
-        <br />
-        <b>Personal Information</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
-
+        <div class="layout-title">
+            <br />
+            <b>Personal Information</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
+        
         <div class="container">
                 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
                         <div class="row layout-padding form-group">
@@ -112,12 +114,14 @@
     </mat-tab>
 
     <mat-tab label="Contact Details">
-        <br />
-        <b>Contact Details</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
-
+        <div class="layout-title">
+            <br />
+            <b>Contact Details</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
+        
         <div class="container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitContactDetails(checkoutForm.value)">
                     <div class="row form-group" style="padding-top: 16px;">
@@ -289,11 +293,13 @@
     </mat-tab>
 
     <mat-tab label="Address">
-        <br />
-        <b>Address</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
+        <div class="layout-title">
+            <br />
+            <b>Address</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
 
         <div class="container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitAddress(checkoutForm.value)">
@@ -415,12 +421,14 @@
     </mat-tab>
 
     <mat-tab label="Bank Details">
-        <br />
-        <b>Bank Details</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
-
+        <div class="layout-title">
+            <br />
+            <b>Bank Details</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
+        
         <div class="container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
                 <div class="row form-group" style="padding-top: 16px;">
@@ -569,12 +577,14 @@
     </mat-tab>
 
     <mat-tab label="Employment Details">
-        <br />
-        <b>Employment Details</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
-
+        <div class="layout-title">
+            <br />
+            <b>Employment Details</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
+        
         <div class="container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
                 <div class="row form-group" style="padding-top: 16px;">
@@ -676,12 +686,14 @@
     </mat-tab>
 
     <mat-tab label="Investment Details">
-        <br />
-        <b>Investment Details</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
-
+        <div class="layout-title">
+            <br />
+            <b>Investment Details</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
+        
         <div class="container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
                 <div class="row form-group" style="padding-top: 16px;">
@@ -827,25 +839,34 @@
             </form>
         </div>
     </mat-tab>
+
     <mat-tab label="Tax Declaration">
-        <br />
-        <b>Tax Declaration</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
+        <div class="layout-title">
+            <br />
+            <b>Tax Declaration</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
     </mat-tab>
+
     <mat-tab label="Others">
-        <br />
-        <b>Others</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
+        <div class="layout-title">
+            <br />
+            <b>Others</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
     </mat-tab>
+
     <mat-tab label="Risk Fact Sheet">
-        <br />
-        <b>Risk Fact Sheet</b>
-        <br />
-        <br />
-        <p>{{LastUpdateDateTime}}</p>
+        <div class="layout-title">
+            <br />
+            <b>Risk Fact Sheet</b>
+            <br />
+            <br />
+            <p>{{LastUpdateDateTime}}</p>
+        </div>
     </mat-tab>
 </mat-tab-group>

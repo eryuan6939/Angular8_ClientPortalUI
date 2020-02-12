@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class UpdateParticularsComponent implements OnInit {
 
-  LastUpdateDateTime = 'Last Updated on 20 July 2019';
+  LastUpdateDateTime = 'Last Updated on 12 Feb 2020';
   AccountNo = 'AAA2222';
   emailAddress = 'peterfirstcher1@phillip.com.sg';
 
