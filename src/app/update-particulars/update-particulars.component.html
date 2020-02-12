@@ -8,107 +8,109 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
         
-        <div class="container">
-                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-                        <div class="row layout-padding form-group">
-                            <div class="col-sm-6">
-                                Account Number
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-3">
+                            Account Number
+                        </div>
+                        <div class="col-sm-8">
+                            <p>{{AccountNo}}</p>
+                        </div>
+                    </div>
+                    <div class="row layout-padding form-group">
+                            <div class="col-sm-3">
+                                Name
                             </div>
-                            <div class="col-sm-6">
-                                <p>{{AccountNo}}</p>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="name">
                             </div>
-                        </div>
-                        <div class="row layout-padding form-group">
-                                <div class="col-sm-6">
-                                    Name
+                    </div>
+                    <div class="row layout-padding form-group">
+                            <div class="col-sm-3">
+                                Passport No/NRIC
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="idno">
+                            </div>
+                    </div>
+                    <div class="row layout-padding form-group">
+                            <div class="col-sm-3">
+                                ID Type
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control">
+                                    <option *ngFor="let idtype of idtypes" value={{idtype.id}}>
+                                        {{idtype.name}}
+                                    </option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="row layout-padding form-group">
+                            <div class="col-sm-3">
+                                Nationality
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control">
+                                    <option *ngFor="let country of countries" value={{country.id}}>
+                                        {{country.name}}
+                                    </option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="row layout-padding form-group">
+                            <div class="col-sm-3">
+                                Singapore PR
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="singaporePR" id="rdsingaporePR" value="No">
+                                    <label class="form-check-label">
+                                        No
+                                    </label>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" ng-model="name">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="singaporePR" id="rdsingaporePR" value="Yes">
+                                    <label class="form-check-label">
+                                        Yes
+                                    </label>
                                 </div>
-                        </div>
-                        <div class="row layout-padding form-group">
-                                <div class="col-sm-6">
-                                    Passport No/NRIC
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" ng-model="idno">
-                                </div>
-                        </div>
-                        <div class="row layout-padding form-group">
-                                <div class="col-sm-6">
-                                    ID Type
-                                </div>
-                                <div class="col-sm-6">
-                                    <select class="form-control">
-                                        <option *ngFor="let idtype of idtypes" value={{idtype.id}}>
-                                            {{idtype.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="row layout-padding form-group">
-                                <div class="col-sm-6">
-                                    Nationality
-                                </div>
-                                <div class="col-sm-6">
-                                    <select class="form-control">
-                                        <option *ngFor="let country of countries" value={{country.id}}>
-                                            {{country.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="row layout-padding form-group">
-                                <div class="col-sm-6">
-                                    Singapore PR
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="singaporePR" id="rdsingaporePR" value="No">
-                                        <label class="form-check-label">
-                                            No
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="singaporePR" id="rdsingaporePR" value="Yes">
-                                        <label class="form-check-label">
-                                            Yes
-                                        </label>
-                                    </div>
-                                </div>
-                        </div>
+                            </div>
+                    </div>
 
-                        <div class="row layout-padding form-group">
-                            <div class="col-sm-6">
-                                Uploaded file(s)
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-3">
+                            Uploaded file(s)
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                                <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
                             </div>
-                            <div class="col-sm-6">
-                                <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-                                    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-                                </div>
-                                <div>
-                                    <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
-                                </div>
+                            <div>
+                                <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row form-group">
-                            <div class="col-sm-6 offset-sm-6">
-                                    <div  class="files-list" *ngFor="let file of files;let i= index">
-                                            <p> {{ file }} </p>
-                                            <button class="delete-file" (click)="deleteAttachment(i)">
-                                              <img src="../../assets/images/Recycle_Bin_Full.png">
-                                            </button>
-                                    </div>
-                            </div>
+                    <div class="row form-group">
+                        <div class="col-sm-8 offset-sm-3">
+                                <div  class="files-list" *ngFor="let file of files;let i= index">
+                                        <p> {{ file }} </p>
+                                        <button class="delete-file" (click)="deleteAttachment(i)">
+                                          <img src="../../assets/images/Recycle_Bin_Full.png">
+                                        </button>
+                                </div>
                         </div>
+                    </div>
 
-                        <div class="row layout-padding form-group">
-                            <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmit()">Edit</button>
-                            </div>
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmit()">Edit</button>
                         </div>
-                </form>
+                    </div>
+            </form>
+            </div>
         </div>
 
     </mat-tab>
@@ -122,8 +124,9 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
         
-        <div class="container">
-            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitContactDetails(checkoutForm.value)">
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitContactDetails()">
                     <div class="row form-group" style="padding-top: 16px;">
                         <div class="col-sm-3">
                             Home No.
@@ -289,6 +292,7 @@
                         </div>
                     </div>
             </form>
+            </div>
         </div>
     </mat-tab>
 
@@ -301,120 +305,122 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
 
-        <div class="container">
-            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitAddress(checkoutForm.value)">
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        <p><b>Residential Address</b></p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 1
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="resAddressLine1">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 2
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="resAddressLine2">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 3
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="resAddressLine3">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Uploaded File
-                    </div>
-                    <div class="col-sm-8">
-                        
-                        <div>
-                            <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitAddress()">
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            <p><b>Residential Address</b></p>
                         </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-8 offset-sm-3">
-                        
-                    </div>
-                </div>
-
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        <p><b>Mailing Address</b></p>
-                    </div>
-                </div>
-                <div class="row form-group form-check form-check-inline">
-                    <div class="col-sm-12">
-                        <label class="form-check-label" for="chkDifferentResidentAdd">
-                            <input class="form-check-input" type="checkbox" id="chkDifferentResidentAdd" value="chkDifferent">
-                            My Mailing Address is different from my Residential Address</label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 1
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="malAddressLine1">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 2
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="malAddressLine2">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Line 3
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="malAddressLine3">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Reason for different mailing address
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="reason">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Uploaded File
-                    </div>
-                    <div class="col-sm-8">
-                        
-                        <div>
-                            <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 1
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="resAddressLine1">
                         </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-8 offset-sm-3">
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 2
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="resAddressLine2">
+                        </div>
                     </div>
-                </div>
-
-                <div class="row layout-padding form-group">
-                    <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmit()">Edit</button>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 3
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="resAddressLine3">
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Uploaded File
+                        </div>
+                        <div class="col-sm-8">
+                            
+                            <div>
+                                <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-8 offset-sm-3">
+                            
+                        </div>
+                    </div>
+    
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            <p><b>Mailing Address</b></p>
+                        </div>
+                    </div>
+                    <div class="row form-group form-check form-check-inline">
+                        <div class="col-sm-12">
+                            <label class="form-check-label" for="chkDifferentResidentAdd">
+                                <input class="form-check-input" type="checkbox" id="chkDifferentResidentAdd" value="chkDifferent">
+                                My Mailing Address is different from my Residential Address</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 1
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="malAddressLine1">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 2
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="malAddressLine2">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Line 3
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="malAddressLine3">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Reason for different mailing address
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="reason">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Uploaded File
+                        </div>
+                        <div class="col-sm-8">
+                            
+                            <div>
+                                <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-8 offset-sm-3">
+                        </div>
+                    </div>
+    
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmit()">Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
 
@@ -429,149 +435,151 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
         
-        <div class="container">
-            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        Bank 1
-                    </div>
-                    <div class="col-sm-8">
-                        <label class="form-check-label" for="radioBankDefault1">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioBankDefault1" value="default1">
-                            Default Account
-                        </label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Country
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let bankcountry of bankcountries" value={{bankcountry.id}}>
-                                {{bankcountry.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Name
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let bankname of banknames" value={{bankname.id}}>
-                                {{bankname.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Account No.
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="bankaccno">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Uploaded file(s)
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-                            <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails()">
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            Bank 1
                         </div>
-                        <div>
-                            <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+                        <div class="col-sm-8">
+                            <label class="form-check-label" for="radioBankDefault1">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioBankDefault1" value="default1">
+                                Default Account
+                            </label>
                         </div>
                     </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-sm-8 offset-sm-3">
-                            <div  class="files-list" *ngFor="let file of files;let i= index">
-                                    <p> {{ file }} </p>
-                                    <button class="delete-file" (click)="deleteAttachment(i)">
-                                      <img src="../../assets/images/Recycle_Bin_Full.png">
-                                    </button>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Country
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let bankcountry of bankcountries" value={{bankcountry.id}}>
+                                    {{bankcountry.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Name
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let bankname of banknames" value={{bankname.id}}>
+                                    {{bankname.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Account No.
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="bankaccno">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Uploaded file(s)
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                                <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
                             </div>
-                    </div>
-                </div>
-
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        Bank 2
-                    </div>
-                    <div class="col-sm-8">
-                        <label class="form-check-label" for="radioBankDefault2">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioBankDefault1" value="default2">
-                            Default Account
-                        </label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Country
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let bankcountry of bankcountries" value={{bankcountry.id}}>
-                                {{bankcountry.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Name
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let bankname of banknames" value={{bankname.id}}>
-                                {{bankname.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Bank Account No.
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="bankaccno">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Uploaded file(s)
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
-                            <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-                        </div>
-                        <div>
-                            <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-sm-8 offset-sm-3">
-                            <div  class="files-list" *ngFor="let file of files;let i= index">
-                                    <p> {{ file }} </p>
-                                    <button class="delete-file" (click)="deleteAttachment(i)">
-                                      <img src="../../assets/images/Recycle_Bin_Full.png">
-                                    </button>
+                            <div>
+                                <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
                             </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row layout-padding form-group">
-                    <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmitBankDetails()">Edit</button>
+    
+                    <div class="row form-group">
+                        <div class="col-sm-8 offset-sm-3">
+                                <div  class="files-list" *ngFor="let file of files;let i= index">
+                                        <p> {{ file }} </p>
+                                        <button class="delete-file" (click)="deleteAttachment(i)">
+                                          <img src="../../assets/images/Recycle_Bin_Full.png">
+                                        </button>
+                                </div>
+                        </div>
                     </div>
-                </div>
-            </form>
+    
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            Bank 2
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-check-label" for="radioBankDefault2">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioBankDefault1" value="default2">
+                                Default Account
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Country
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let bankcountry of bankcountries" value={{bankcountry.id}}>
+                                    {{bankcountry.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Name
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let bankname of banknames" value={{bankname.id}}>
+                                    {{bankname.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Bank Account No.
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="bankaccno">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Uploaded file(s)
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                                <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+                            </div>
+                            <div>
+                                <p style="text-align:right"><small>(PNG/JPG or PDF and Max 5MB)</small></p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row form-group">
+                        <div class="col-sm-8 offset-sm-3">
+                                <div  class="files-list" *ngFor="let file of files;let i= index">
+                                        <p> {{ file }} </p>
+                                        <button class="delete-file" (click)="deleteAttachment(i)">
+                                          <img src="../../assets/images/Recycle_Bin_Full.png">
+                                        </button>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmitBankDetails()">Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </mat-tab>
@@ -585,103 +593,105 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
         
-        <div class="container">
-            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        Occupation
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails()">
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            Occupation
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let Occupation of Occupations" value={{Occupation.id}}>
+                                    {{Occupation.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let Occupation of Occupations" value={{Occupation.id}}>
-                                {{Occupation.name}}
-                            </option>
-                        </select>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Please Specify
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="specifyOccupation">
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Please Specify
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Name of Business/Employer
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="Employername">
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="specifyOccupation">
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Designation
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="designation">
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Name of Business/Employer
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Employer Address
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="employeraddress">
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="Employername">
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            Annual Salary/Income(S$)
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let Income of Incomes" value={{Income.id}}>
+                                    {{Income.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Designation
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Estimated Net Worth(S$)
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let NetWorth of NetWorths" value={{NetWorth.id}}>
+                                    {{NetWorth.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="designation">
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Source of Wealth
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let SourceWealth of SourceWealths" value={{SourceWealth.id}}>
+                                    {{SourceWealth.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Employer Address
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Specify Source
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="specifysource">
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="employeraddress">
+    
+                    <div class="row layout-padding form-group">
+                        <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmitBankDetails()">Edit</button>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        Annual Salary/Income(S$)
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let Income of Incomes" value={{Income.id}}>
-                                {{Income.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Estimated Net Worth(S$)
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let NetWorth of NetWorths" value={{NetWorth.id}}>
-                                {{NetWorth.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Source of Wealth
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let SourceWealth of SourceWealths" value={{SourceWealth.id}}>
-                                {{SourceWealth.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Specify Source
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" ng-model="specifysource">
-                    </div>
-                </div>
-
-                <div class="row layout-padding form-group">
-                    <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary btn-block" (submit)="onSubmitBankDetails()">Edit</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </mat-tab>
 
@@ -694,149 +704,151 @@
             <p>{{LastUpdateDateTime}}</p>
         </div>
         
-        <div class="container">
-            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails(checkoutForm.value)">
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        1.Education Qualifications
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        Education Level
-                    </div>
-                    <div class="col-sm-8">
-                        <select class="form-control">
-                            <option *ngFor="let EduLevel of EduLevels" value={{EduLevel.id}}>
-                                {{EduLevel.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <p>Do you have Diploma or Higher qualification in the following?</p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <select class="form-control">
-                            <option *ngFor="let Qualification of Qualifications" value={{Qualification.id}}>
-                                {{Qualification.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <p>Name of College</p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" ng-model="namecollege">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <p>Do you have the following Professional finance-related qualification?</p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <select class="form-control">
-                            <option *ngFor="let ProQualification of ProQualifications" value={{ProQualification.id}}>
-                                {{ProQualification.name}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group" style="padding-top: 16px;">
-                    <div class="col-sm-3">
-                        2.Investment Experience
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-11">
-                        <p>Have you done 6 or more transactions in Futures and Options (Exchanged Listed) products in the last 3 years?</p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="radioFutures" id="rdFutures" value="Yes">
-                            <label class="form-check-label">
-                                Yes
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="radioFutures" id="rdFutures" value="No">
-                            <label class="form-check-label">
-                                No
-                            </label>
+        <div class="card">
+            <div class="card-body layout-cardform">
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitBankDetails()">
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            1.Education Qualifications
                         </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-11">
-                        <table class="table table-striped table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th *ngFor="let header of headerElements" scope="col"> {{header}} </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let el of elements">
-                                    <th scope="row">{{el.id}}</th>
-                                    <td>{{el.product}}</td>
-                                    <td>{{el.broker}}</td>
-                                    <td>{{el.transaction}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-11">
-                        <p>Have you done 6 or more transactions in Leveraged Forex/Bullion/OTC Metals/Contract for Differences("CFDs") in the last 3 years?</p>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-6">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="radioCFD" id="rdCFD" value="Yes">
-                            <label class="form-check-label">
-                                Yes
-                            </label>
+                    <div class="row form-group">
+                        <div class="col-sm-3">
+                            Education Level
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="radioCFD" id="rdCFD" value="No">
-                            <label class="form-check-label">
-                                No
-                            </label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option *ngFor="let EduLevel of EduLevels" value={{EduLevel.id}}>
+                                    {{EduLevel.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-11">
-                        <table class="table table-striped table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th *ngFor="let header of headerElements" scope="col"> {{header}} </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let el of elements">
-                                    <th scope="row">{{el.id}}</th>
-                                    <td>{{el.product}}</td>
-                                    <td>{{el.broker}}</td>
-                                    <td>{{el.transaction}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <p>Do you have Diploma or Higher qualification in the following?</p>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <select class="form-control">
+                                <option *ngFor="let Qualification of Qualifications" value={{Qualification.id}}>
+                                    {{Qualification.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <p>Name of College</p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" ng-model="namecollege">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <p>Do you have the following Professional finance-related qualification?</p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <select class="form-control">
+                                <option *ngFor="let ProQualification of ProQualifications" value={{ProQualification.id}}>
+                                    {{ProQualification.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group" style="padding-top: 16px;">
+                        <div class="col-sm-3">
+                            2.Investment Experience
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-11">
+                            <p>Have you done 6 or more transactions in Futures and Options (Exchanged Listed) products in the last 3 years?</p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioFutures" id="rdFutures" value="Yes">
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioFutures" id="rdFutures" value="No">
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-11">
+                            <table class="table table-striped table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th *ngFor="let header of headerElements" scope="col"> {{header}} </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let el of elements">
+                                        <th scope="row">{{el.id}}</th>
+                                        <td>{{el.product}}</td>
+                                        <td>{{el.broker}}</td>
+                                        <td>{{el.transaction}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-11">
+                            <p>Have you done 6 or more transactions in Leveraged Forex/Bullion/OTC Metals/Contract for Differences("CFDs") in the last 3 years?</p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioCFD" id="rdCFD" value="Yes">
+                                <label class="form-check-label">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioCFD" id="rdCFD" value="No">
+                                <label class="form-check-label">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-11">
+                            <table class="table table-striped table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th *ngFor="let header of headerElements" scope="col"> {{header}} </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let el of elements">
+                                        <th scope="row">{{el.id}}</th>
+                                        <td>{{el.product}}</td>
+                                        <td>{{el.broker}}</td>
+                                        <td>{{el.transaction}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </mat-tab>
 
@@ -848,6 +860,11 @@
             <br />
             <p>{{LastUpdateDateTime}}</p>
         </div>
+
+        <div class="card">
+            <div class="card-body layout-cardform">
+            </div>
+        </div>
     </mat-tab>
 
     <mat-tab label="Others">
@@ -858,6 +875,11 @@
             <br />
             <p>{{LastUpdateDateTime}}</p>
         </div>
+
+        <div class="card">
+            <div class="card-body layout-cardform">
+            </div>
+        </div>
     </mat-tab>
 
     <mat-tab label="Risk Fact Sheet">
@@ -867,6 +889,11 @@
             <br />
             <br />
             <p>{{LastUpdateDateTime}}</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body layout-cardform">
+            </div>
         </div>
     </mat-tab>
 </mat-tab-group>

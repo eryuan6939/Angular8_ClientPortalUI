@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-update-particulars',
@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class UpdateParticularsComponent implements OnInit {
 
+  checkoutForm;
   LastUpdateDateTime = 'Last Updated on 12 Feb 2020';
   AccountNo = 'AAA2222';
   emailAddress = 'peterfirstcher1@phillip.com.sg';
@@ -151,7 +152,17 @@ export class UpdateParticularsComponent implements OnInit {
 
   };
 
-  constructor() { }
+  onSubmitAddress(){
+
+  };
+
+  constructor(
+    private formBuilder: FormBuilder,
+    ) {
+      this.checkoutForm = this.formBuilder.group({
+      }); 
+    
+  }
   ngOnInit() {
   }
 

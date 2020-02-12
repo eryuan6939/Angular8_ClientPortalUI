@@ -6,6 +6,11 @@
     padding-left: 32px;
 }
 
+.layout-cardform{
+    padding-right: 256px;
+    padding-left: 256px;
+}
+
 .uploadfilecontainer {
     background-repeat: no-repeat;
     background-size: 100px;
