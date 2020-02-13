@@ -1,0 +1,38 @@
+.standard-page{
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.standard-card{
+    margin: 0 auto;
+    width: 40%;
+}
+
+.custom-card{
+    margin: 0 auto;
+    width: 55%;
+}
+
+.standard-form{
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 6px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.standard-form > * {
+    width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 24px;
+}
+
+.standard-label{
+    padding-right: 32px;
+}
+

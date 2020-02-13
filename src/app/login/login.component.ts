@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit() {
     alert(this.user.userID + ' ' + this.user.password);
-    
+   
   }
 
 }

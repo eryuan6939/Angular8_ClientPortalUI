@@ -1,0 +1,278 @@
+<div class="standard-page">
+    <button mat-button [matMenuTriggerFor]="menu"> Update Particulars </button>
+    <mat-menu #menu="matMenu">
+      <button (click)=toggleDisplayPersonalInformation() mat-menu-item> Personal Information </button>
+      <button (click)=toggleDisplayContactDetails() mat-menu-item> Contact Details </button>
+    </mat-menu>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div *ngIf="isShowPI" class="col-sm-12">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal Information
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <mat-card class="col-sm-6 offset-sm-3">
+            <mat-card-content>
+              <form [formGroup]="updatePersonalInformation" (ngSubmit)="onUpdatePISubmit()" novalidate>
+                <div class="row standard-form">
+                  <mat-form-field>
+                    <mat-label>Account Number</mat-label>
+                    <input matInput #input1 formControlName="accountNumber"
+                    [(ngModel)]="personalinformation.accountNumber" Value="AAA2222" disabled>
+                  </mat-form-field>
+                </div>
+                <div class="row standard-form">
+                  <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput #input1 formControlName="name"
+                    [(ngModel)]="personalinformation.name" required>
+                  </mat-form-field>
+                </div>
+                <div class="row standard-form">
+                  <mat-form-field>
+                    <mat-label>Passport No / NRIC</mat-label>
+                    <input matInput #input1 formControlName="IDnumber"
+                    [(ngModel)]="personalinformation.IDnumber" required>
+                  </mat-form-field>
+                </div>
+                <div class="row standard-form">
+                  <mat-form-field>
+                    <mat-label>ID Type</mat-label>
+                    <select matNativeControl>
+                      <option *ngFor="let idtype of idtypes" value={{idtype.id}}>
+                          {{idtype.name}}
+                      </option>
+                  </select>
+                  </mat-form-field>
+                </div>
+                <div class="row standard-form">
+                  <mat-form-field>
+                    <mat-label>Nationality</mat-label>
+                    <select matNativeControl>
+                      <option *ngFor="let nationality of nationalities" value={{nationality.id}}>
+                          {{nationality.name}}
+                      </option>
+                  </select>
+                  </mat-form-field>
+                </div>
+                <div class="row standard-form">
+                  <div>
+                    <label class="standard-label"><b>Singapore PR</b></label>
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button value="Yes">Yes</mat-radio-button>
+                      <mat-radio-button value="No">No</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </form>
+            </mat-card-content>
+            <mat-card-actions>
+              <br/>
+              <br/>
+              <button mat-raised-button (click)="onUpdatePISubmit()" [disabled]="!updatePersonalInformation.valid" class="btn btn-primary btn-block">
+                  Update
+              </button>
+              <br/>
+              <br/>
+            </mat-card-actions>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div *ngIf="isShowCD" class="col-sm-12">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contact Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <mat-card class="col-sm-6 offset-sm-3">
+            <mat-card-content>
+              <form [formGroup]="updateContactDetails" (ngSubmit)="onUpdateCDSubmit()" novalidate>
+                <div class="row form-group" style="padding-top: 16px;">
+                  <div class="col-sm-3">
+                      Home No.
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" [(ngModel)]="contactdetails.homeNumber">
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let contacttype of contacttypes" value={{contacttype.id}}>
+                                  {{contacttype.name}}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let contacttype of contacttypes" value={{contacttype.id}}>
+                                  {{contacttype.name}}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                      Office No.
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let contacttype of contacttypes" value={{contacttype.id}}>
+                                  {{contacttype.name}}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                      Fax No.
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                      <div class="col-sm-3">
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                      Mobile/ Hand Phone
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let contacttype of contacttypes" value={{contacttype.id}}>
+                                  {{contacttype.name}}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let countriescode of countriescodes" value={{countriescode.id}}>
+                                  {{countriescode.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control">
+                              <option *ngFor="let contacttype of contacttypes" value={{contacttype.id}}>
+                                  {{contacttype.name}}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-sm-3">
+                      Email Address
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-11">
+                          <input type="text" class="form-control" ng-model="idno">
+                      </div>
+                  </div>
+              </div>
+              <div class="row layout-padding form-group">
+                  <div class="col-sm-3">
+                  </div>
+                  <div class="row col-sm-9 form-check-inline">
+                      <div class="col-sm-7">
+                          <p><b>Your first email will be your Client Portal registered email:</b></p>
+                      </div>
+                      <div class="col-sm-4">
+                          <p><small>{{emailAddress}}</small></p>
+                      </div>
+                  </div>
+              </div>
+              </form>
+            </mat-card-content>
+            <mat-card-actions>
+              <br/>
+              <br/>
+              <button mat-raised-button (click)="onUpdateCDSubmit()" [disabled]="!updateContactDetails.valid" class="btn btn-primary btn-block">
+                  Update
+              </button>
+              <br/>
+              <br/>
+            </mat-card-actions>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+

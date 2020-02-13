@@ -16,6 +16,7 @@ import{HighlightDirective} from './app-highlight.directive';
 import { HomeComponent } from './home/home.component';
 import { FundWithdrawalComponent } from './fund-withdrawal/fund-withdrawal.component';
 import { UpdateParticularsComponent } from './update-particulars/update-particulars.component';
+import { NewUpdateParticularsComponent } from './updateparticulars/updateparticulars.component';
 
 
 
@@ -29,6 +30,7 @@ import { UpdateParticularsComponent } from './update-particulars/update-particul
     HomeComponent,
     FundWithdrawalComponent,
     UpdateParticularsComponent,
+    NewUpdateParticularsComponent,
     
   ],
   imports: [

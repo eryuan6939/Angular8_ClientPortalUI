@@ -7,6 +7,7 @@ import{GridsComponent} from './grids/grids.component';
 import{HomeComponent} from './home/home.component'
 import { FundWithdrawalComponent } from './fund-withdrawal/fund-withdrawal.component';
 import { UpdateParticularsComponent } from './update-particulars/update-particulars.component';
+import { NewUpdateParticularsComponent } from './updateparticulars/updateparticulars.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'home',component: HomeComponent},
   {path: 'fundwithdrawal',component: FundWithdrawalComponent},
   {path: 'updateparticulars',component: UpdateParticularsComponent},
+  {path: 'newupdateparticulars',component: NewUpdateParticularsComponent},
 ];
 
 @NgModule({
